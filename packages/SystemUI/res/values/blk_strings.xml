@@ -40,4 +40,7 @@
     <string name="halo_signal_bars_2">TWO BARS</string>	
     <string name="halo_signal_bars_1">ONE BAR</string>	
     <string name="halo_signal_bars_none">NO BARS</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
 </resources>
