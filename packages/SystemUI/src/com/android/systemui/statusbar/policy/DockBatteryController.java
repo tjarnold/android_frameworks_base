@@ -42,6 +42,10 @@ public class DockBatteryController extends BatteryController {
                 cb.onBatteryLevelChanged(mBatteryPresent, mBatteryLevel, mBatteryPlugged,
                         mBatteryStatus);
             }
+
+            for (BatteryStateChangeCallbackHalo cb_Halo : mChangeCallbacksHalo) {
+                cb_Halo.onBatteryLevelChangedHalo(mBatteryLevel, mBatteryPlugged);
+            }
         }
     }
 }

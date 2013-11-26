@@ -31,6 +31,9 @@ public class BatteryController extends BroadcastReceiver {
     protected ArrayList<BatteryStateChangeCallback> mChangeCallbacks =
             new ArrayList<BatteryStateChangeCallback>();
 
+    protected ArrayList<BatteryStateChangeCallbackHalo> mChangeCallbacksHalo =
+            new ArrayList<BatteryStateChangeCallbackHalo>();
+
     protected int mBatteryLevel = 0;
     protected int mBatteryStatus = BatteryManager.BATTERY_STATUS_UNKNOWN;
     protected boolean mBatteryPlugged = false;
@@ -41,6 +44,10 @@ public class BatteryController extends BroadcastReceiver {
                 int status);
         public void onBatteryMeterModeChanged(BatteryMeterMode mode);
         public void onBatteryMeterShowPercent(boolean showPercent);
+    }
+
+    public interface BatteryStateChangeCallbackHalo {
+        public void onBatteryLevelChangedHalo(int level, boolean pluggedIn);
     }
 
     public BatteryController(Context context) {
@@ -55,8 +62,16 @@ public class BatteryController extends BroadcastReceiver {
         cb.onBatteryLevelChanged(mBatteryPresent, mBatteryLevel, mBatteryPlugged, mBatteryStatus);
     }
 
+    public void addStateChangedCallbackHalo(BatteryStateChangeCallbackHalo cb_Halo) {
+        mChangeCallbacksHalo.add(cb_Halo);
+    }
+
     public void removeStateChangedCallback(BatteryStateChangeCallback cb) {
         mChangeCallbacks.remove(cb);
+    }
+
+    public void removeStateChangedCallbackHalo(BatteryStateChangeCallbackHalo cb_Halo) {
+        mChangeCallbacksHalo.remove(cb_Halo);
     }
 
     public void onReceive(Context context, Intent intent) {
@@ -71,6 +86,10 @@ public class BatteryController extends BroadcastReceiver {
             for (BatteryStateChangeCallback cb : mChangeCallbacks) {
                 cb.onBatteryLevelChanged(mBatteryPresent, mBatteryLevel, mBatteryPlugged,
                         mBatteryStatus);
+            }
+
+            for (BatteryStateChangeCallbackHalo cb_Halo : mChangeCallbacksHalo) {
+                cb_Halo.onBatteryLevelChangedHalo(mBatteryLevel, mBatteryPlugged);
             }
         }
     }

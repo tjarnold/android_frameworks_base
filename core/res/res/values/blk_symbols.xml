@@ -18,4 +18,8 @@
 <resources>
     <!-- UI theme mode -->
     <java-symbol type="integer" name="config_uiThemeMode" />
+
+    <!-- Halo -->
+    <java-symbol type="style" name="Theme.DeviceDefault.FloatingWindow" />
+    <java-symbol type="style" name="Theme.DeviceDefault.FloatingWindowLight" />
 </resources>
