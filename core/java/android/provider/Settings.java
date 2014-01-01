@@ -3502,6 +3502,12 @@ public final class Settings {
          */
         public static final String HALO_UNLOCK_PING = "halo_unlock_ping";
 
+	/**
+         * Give SMS Notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_SMS_BREATH = "pref_key_sms_breath";
+
         /**
          * Performance profile
          * @see config_perf_profile_prop in frameworks/base/core/res/res/values/config.xml
