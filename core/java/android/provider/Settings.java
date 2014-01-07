@@ -3350,6 +3350,12 @@ public final class Settings {
          public static final String KEY_APP_SWITCH_LONG_PRESS_ACTION = "key_app_switch_long_press_action";
 
         /**
+         * Custom LCD density
+         * @hide
+         */
+        public static final String LCD_DENSITY = "lcd_density";
+
+        /**
          * HALO, should default to 0 (no, do not show)
          * @hide
          */

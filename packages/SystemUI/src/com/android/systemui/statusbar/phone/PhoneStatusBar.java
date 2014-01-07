@@ -361,6 +361,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.STATUS_BAR_BATTERY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LCD_DENSITY), false, this);
             updateSettings();
         }
 
@@ -3358,7 +3360,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 if (mQuickAccessLayoutLinked && mRibbonQS != null) {
                     mRibbonQS.setupQuickSettings();
                 }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.LCD_DENSITY))) {
+                mDisplayMetrics.updateDensity();
+                recreateStatusBar();
             }
+
+            updateSettings();
         }
 
         public void startObserving() {
